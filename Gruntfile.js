@@ -86,7 +86,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('ci', '', function () {
         var taskList = [
-            'watch:jshint', 'watch:jasmine_node'
+            'concurrent:dev'
         ];
         grunt.task.run(taskList);
     });
