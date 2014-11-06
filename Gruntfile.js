@@ -77,9 +77,18 @@ module.exports = function (grunt) {
                     logConcurrentOutput: true
                 }
             }
-        } // concurrent
+        }, // concurrent
 
-
+        doctoc: {
+            options: {
+                bitbucket: false,
+                removeAd: true,
+                header: "## Table of Contents"
+            },
+            readme : {
+                target: "./readme.md"
+            }
+        }
     });
 
     require('load-grunt-tasks')(grunt);

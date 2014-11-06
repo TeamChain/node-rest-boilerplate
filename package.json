@@ -24,6 +24,7 @@
     "grunt-contrib-jasmine": "^0.8.1",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-doctoc": "^0.1.1",
     "grunt-jasmine-node": "^0.2.1",
     "grunt-nodemon": "^0.3.0",
     "jshint": "^2.5.8",
