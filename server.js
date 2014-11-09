@@ -24,11 +24,17 @@ module.exports = function (hostname, port) {
     app.use(bodyParser.urlencoded());
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
+
+    var passport = require('passport');
+    app.use(passport.initialize());
+    app.use(passport.session());
+
     app.use(app.router);
 
 // Addition of the swagger module.
     var redirectRootToSwagger = true;
     var swagger = require('./modules/swagger')(app, redirectRootToSwagger);
+    require('./modules/auth/facebook')(swagger, app);
 
 // Add endpoints from swagger based RESTful modules.
     require('./modules/pets')(swagger);

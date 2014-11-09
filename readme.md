@@ -39,7 +39,7 @@
 
 # Introduction
 
-The primary objective of this project is to have a complete "best practice" boilerplate project for a RESTful nodeJS server up and running within seconds.
+The primary objective of this project is to have a complete "best practice" boilerplate project for a RESTful nodeJS server (including Facebook authentication) up and running within seconds.
 
 This project is runnable out of the box - see [Getting Started](#getting-started) - assuming the default ports we've chosen to run the app on are not taken.
 
@@ -70,6 +70,8 @@ There are lots of off the shelf components to help us achieve our objectives - a
 
 ### Components
 
+See the package.json for full details but here some worth highlighting:
+
 1.  express (3.x) - I wanted to use 4.x but the swagger modules (below) don't appear to support 4.x yet.
 2.  swagger-node-express (forked) - although I considered swagger-jack, this is the most active swagger branch - patched to allow swagger-validation (below) to be integrated.
 3.  swagger-validation - nicely leverages our swagger definitions during validation.
@@ -79,7 +81,25 @@ There are lots of off the shelf components to help us achieve our objectives - a
 7.  jshint - setup to automatically re-inspect javascript files as they change.
 8.  jasmine_node - setup to automatically kick off jasmine tests as files change.
 9.  nodemon - to restart the server as we make changes.
-10. intellij -
+10. intellij - my preferred IDE but you can get rid of the .iml and .idea/ files if you wish.
+11. passport - for authentication.
+12. passport-facebook - to demonstrate facebook authentication.
+
+### Modules
+
+#### /swagger
+
+Where we've setup swagger.
+
+#### /modules/auth/facebook
+
+Facebook authentication via passport. Note that /auth/facebook is published as an endpoint through swagger and other endpoints are not published since they're used as intermediate redirects.
+
+#### /modules/pets
+
+The normal swagger 'pet' endpoint translated to this solution.
+
+## Recommendations
 
 ### File Structure
 
@@ -121,18 +141,18 @@ You should see something like this:
     > node ./bin/start-www.js
 
     setAppHandler is deprecated!  Pass it to the constructor instead.
-    Running http server "127.0.0.1" on port "3100".
-    Running https server "127.0.0.1" on port "3444".
+    Running http server "localhost" on port "3100".
+    Running https server "localhost" on port "3443".
 
 
 Hitting the root http or https locations should redirect you to swagger-ui auto-generated documents.
 
-    http://127.0.0.1:3100
-    https://127.0.0.1:3444
+    http://localhost:3100
+    https://localhost:3443
 
-Using curl to hit http://127.0.0.1:3100/pets/1 should yield:
+Using curl to hit http://localhost:3100/pets/1 should yield:
 
-    $ curl http://127.0.0.1:3100/pets/1
+    $ curl http://localhost:3100/pets/1
     {"id":1,"category":{"id":2,"name":"Cats"},"name":"Cat 1","urls":["url1","url2"],"tags":[{"id":1,"name":"tag1"},{"id":2,"name":"tag2"}],"status":"available"}
 
 ## Tips on binding the boilerplate from to your git repo
@@ -298,14 +318,14 @@ Swagger documents are located at /api-docs.
 
 ## /api-docs/pets
 
-    curl http://127.0.0.1:3100/api-docs/pets
+    curl http://localhost:3100/api-docs/pets
 
 The results look like this (though we've formatted it for clarity below):
 
     {
         "apiVersion": "0.1",
         "swaggerVersion": "1.2",
-        "basePath": "http://127.0.0.1:3100",
+        "basePath": "http://localhost:3100",
         "resourcePath": "/pets",
         "apis": [
             {

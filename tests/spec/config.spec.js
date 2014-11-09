@@ -12,10 +12,19 @@
             expect(config).toBeDefined();
         });
         it('default values work', function () {
-            expect(config.get('www.hostname')).toEqual('127.0.0.1');
+            expect(config.get('www.hostname')).toEqual('localhost');
         });
         it('development overrides work', function () {
             expect(config.get('example')).toEqual('development-override');
+        });
+    });
+
+    describe('Make sure that facebook credentials are not checked in...', function () {
+        it('appId is not checked in.', function () {
+            expect(config.get('facebook.appSecret')).toEqual('your facebook App Secret');
+        });
+        it('appSecret is not checked in.', function () {
+            expect(config.get('facebook.appId')).toEqual('your facebook App ID');
         });
     });
 }());

@@ -1,14 +1,18 @@
 {
-    "example" : "default",
-    "www"  : {
-        "hostname" : "127.0.0.1",
-        "http" : {
-            "port"     : "3100"
+    "example": "default",
+    "www": {
+        "hostname": "localhost",
+        "http": {
+            "port": "3000"
         },
-        "https" : {
-            "port"     : "3444",
-            "cert_pem_file"   : "bin/pem/development_cert.pem",
-            "key_pem_file"   : "bin/pem/development_key.pem"
+        "https": {
+            "port": "3443",
+            "cert_pem_file": "bin/pem/development_cert.pem",
+            "key_pem_file": "bin/pem/development_key.pem"
         }
+    },
+    "facebook": {
+        "appId": "your facebook App ID",
+        "appSecret": "your facebook App Secret"
     }
 }

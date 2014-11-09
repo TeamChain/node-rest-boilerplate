@@ -14,6 +14,8 @@
     "jade": "~1.3.0",
     "lodash": "~2.4.1",
     "morgan": "~1.4.1",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
     "static-favicon": "~1.0.0",
     "swagger-node-express": "darrin/swagger-node-express",
     "swagger-validation": "~1.2"

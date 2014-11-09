@@ -4,7 +4,11 @@ module.exports = function(app, redirectRootToSwagger) {
     var swagger = require('swagger-node-express');
     var validate = require('swagger-validation');
     var _ = require('lodash');
-    var swaggerUiIndex = 'http://127.0.0.1:3100/swagger-ui/index.html';
+
+    var config = require('config');
+    var port = config.get('www.http.port');
+    var hostname = config.get('www.hostname');
+    var swaggerUiIndex = 'http://' + hostname + ':' + port+ '/swagger-ui/index.html';
 
     // Setup swagger-ui.
     function redirectToSwaggerDocs(res) {
