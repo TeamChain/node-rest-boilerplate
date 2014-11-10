@@ -17,21 +17,14 @@ module.exports = function (grunt) {
         // this way we can use things like name and version (pkg.name)
         pkg: grunt.file.readJSON('package.json'),
 
-        jasmine_node: {
+        nodeunit: {
+            all: ['tests/**/*.test.js', 'tests/**/*.spec.js'],
             options: {
-                forceExit: true,
-                match: '.',
-                matchall: false,
-                extensions: 'js',
-                specNameMatcher: 'spec',
-                jUnit: {
-                    report: true,
-                    savePath: "./build/reports/jasmine/",
-                    useDotNotation: true,
-                    consolidate: true
+                reporter: 'junit',
+                reporterOptions: {
+                    output: "./build/reports/nodeunit/"
                 }
-            },
-            all: ['tests/']
+            }
         },
 
         // configure jshint to validate js files -----------------------------------
@@ -51,9 +44,9 @@ module.exports = function (grunt) {
                 files: [jsFiles],
                 tasks: ['jshint']
             },
-            jasmine_node: {
+            nodeunit: {
                 files: [jsFiles, 'config/*'],
-                tasks: ['jasmine_node']
+                tasks: ['nodeunit']
             }
         }, // watch
 
@@ -72,7 +65,7 @@ module.exports = function (grunt) {
         concurrent: {
             // Restart the server
             dev: {
-                tasks: ['watch:jshint', 'watch:jasmine_node'],
+                tasks: ['watch:jshint', 'watch:nodeunit'],
                 options: {
                     logConcurrentOutput: true
                 }
