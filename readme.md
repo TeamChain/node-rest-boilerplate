@@ -89,6 +89,7 @@ See the package.json for full details but here some worth highlighting:
 10. intellij - my preferred IDE but you can get rid of the .iml and .idea/ files if you wish.
 11. passport - for authentication.
 12. passport-facebook - to demonstrate facebook authentication.
+13. supertest - to perform testing of RESTful endpoints.
 
 ### Modules
 

@@ -38,19 +38,21 @@ module.exports = function (hostname, port) {
 
 // Add endpoints from swagger based RESTful modules.
     require('./modules/pets')(swagger);
+    swagger.configure('http://' + hostname + ':' + port, '0.1');
 
 /// catch 404 and forwarding to error handler
     app.use(function (req, res, next) {
         var err = new Error('Not Found');
         err.status = 404;
-        next();
+        next(err);
     });
 
 // This middleware will be executed for every error...
-    app.use(function (err, req, res) {
-        res.send(err.code, err);
+    app.use(function (err, req, res, next) {
+        var util = require('util');
+        console.log(util.inspect(err));
+        next();
     });
 
-    swagger.configure('http://' + hostname + ':' + port, '0.1');
     return app;
 };

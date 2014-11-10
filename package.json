@@ -32,6 +32,7 @@
     "jshint": "^2.5.8",
     "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^1.0.0",
+    "supertest": "^0.14.0",
     "time-grunt": "^1.0.0"
   }
 }
