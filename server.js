@@ -1,4 +1,4 @@
-module.exports = function (hostname, port) {
+module.exports = (function () {
     'use strict';
     var express = require('express');
     var path = require('path');
@@ -38,6 +38,11 @@ module.exports = function (hostname, port) {
 
 // Add endpoints from swagger based RESTful modules.
     require('./modules/pets')(swagger);
+
+// Configure swagger.
+    var config = require('config');
+    var port = config.get('www.http.port');
+    var hostname = config.get('www.hostname');
     swagger.configure('http://' + hostname + ':' + port, '0.1');
 
 /// catch 404 and forwarding to error handler
@@ -55,4 +60,4 @@ module.exports = function (hostname, port) {
     });
 
     return app;
-};
+}());

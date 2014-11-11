@@ -2,9 +2,7 @@
     'use strict';
 
     var request = require('supertest');
-    var testPort = '3101';
-    var hostname = 'localhost';
-    var server = require('../server')(hostname, testPort);
+    var server = require('../server');
 
     exports['/pets is not a valid datapoint'] = function (test) {
         request(server)

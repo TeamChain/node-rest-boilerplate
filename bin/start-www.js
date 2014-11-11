@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 //var debug = require('debug')('tot-swagger-express');
-var config = require('config');
-
-var port = config.get('www.http.port');
-var hostname = config.get('www.hostname');
-
-var server = require('../server')(hostname, port);
+var server = require('../server');
 var http = require('http');
 
 // Setup for http
+var config = require('config');
+var port = config.get('www.http.port');
+var hostname = config.get('www.hostname');
 server.set('port', port);
 http.createServer(server).listen(port);
 console.log('Running http server "%s" on port "%s".', hostname, port);
